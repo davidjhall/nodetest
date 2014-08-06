@@ -1,1 +1,1 @@
-/usr/bin/node /home/stark/project/generateUser.js
+/usr/bin/node ./generateUser.js
