@@ -1,0 +1,54 @@
+html
+   head
+     script(type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js')
+     // script(type='text/javascript' src='/javascripts/app.js')
+   body
+     script(type='text/javascript' src="http://code.highcharts.com/highcharts.js")
+     script(type='text/javascript' src="http://code.highcharts.com/modules/exporting.js")
+     div(id='container' style="min-width: 300px; height: 400px; margin: 0 ")
+     each datum, i in charts 
+       li=datum._id +" " + datum.counts
+     script.
+      $(function () {
+                  $('#container').highcharts({
+                      title: {
+                          text: 'Users',
+                          x: -20 //center
+                      },
+                      subtitle: {
+                          text: 'userstest.users',
+                          x: -20
+                      },
+                      xAxis: {
+                          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                 },
+                      yAxis: {
+                          title: {
+                              text: '# of users'
+                     },
+                          plotLines: [{
+                              value: 0,
+                              width: 1,
+                              color: '#808080'
+                          }]
+                      },
+                      tooltip: {
+                      valueSuffix: 'Date'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [      {
+                            name: 'http://104.131.232.17/',
+                            data: [9,21,0,0,0,0,5,7]
+                        }]
+                    })      ;
+                });
+
+
+
+

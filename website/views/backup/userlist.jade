@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1.
+        User List
+    ul
+        each user, i in userlist
+            li(ng-repeat='group1')=user.username + "  " + user.isEnabled
+              a.btn.btn-mini(href='/update/#{user._id}') Disable 

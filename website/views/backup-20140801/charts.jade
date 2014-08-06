@@ -1,0 +1,85 @@
+doctype html
+html
+  head
+    script(type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    //
+       Bootstrap CSS 
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet', media='screen')
+    script(type='text/javascript', src='bootstrap/js/jquery.js')
+    script(type='text/javascript', src='bootstrap/js/bootstrap.min.js')
+  body
+    //
+       Navigation Bar 
+    .bodykinda
+      .navbar.navbar-default
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+            |  A demo of user website
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/') Home
+            li.active
+              a(href='#') Chart
+            li
+              a(href='userlist') Admin
+      //
+
+ 
+    script(type='text/javascript' src="http://code.highcharts.com/highcharts.js")
+    script(type='text/javascript' src="http://code.highcharts.com/modules/exporting.js")
+    div(id='container' style="min-width: 300px; height: 400px; margin: 0 ")
+    |<script type='text/javascript'> var foo = [];  
+    each datum, i in charts 
+      | var jan = new Date('2014-01-01');foo.push(new Date(jan.setDate(jan.getDate()+
+      !=datum._id +")));"
+    | </script>
+    |<script type='text/javascript'> bar = [
+    each datum, i in charts 
+      !=datum.counts +","
+    |]</script>
+    script.
+     $(function () {
+                 $('#container').highcharts({
+                     title: {
+                         text: 'Users',
+                         x: -20 //center
+                     },
+                     subtitle: {
+                         text: 'userstest.users',
+                         x: -20
+                     },
+                     xAxis: {
+                         categories:  foo
+                },
+                     yAxis: {
+                         title: {
+                             text: '# of users'
+                    },
+                         plotLines: [{
+                             value: 0,
+                             width: 1,
+                             color: '#808080'
+                         }]
+                     },
+                     tooltip: {
+                     valueSuffix: ''
+                       },
+                       legend: {
+                           layout: 'vertical',
+                           align: 'right',
+                           verticalAlign: 'middle',
+                           borderWidth: 0
+                       },
+                       series: [      {
+                           name: 'http://104.131.232.17/',
+                           data:  bar
+                       }]
+                   })      ;
+               });
+

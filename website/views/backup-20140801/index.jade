@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title  Welcome to Website
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    //
+       Bootstrap CSS 
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet', media='screen')
+    script(type='text/javascript', src='bootstrap/js/jquery.js')
+    script(type='text/javascript', src='bootstrap/js/bootstrap.min.js')
+  body
+    //
+       Navigation Bar 
+    .bodykinda
+      .navbar.navbar-default
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+            |  A demo of user website
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.active
+              a(href='#') Home
+            li
+              a(href='charts') Chart
+            li
+              a(href='userlist') Admin
+      //
+         Navigation Bar 
+   .jumbotron
+      h1  Welcome!
+      p
+        | A demonstration of user lists with Node/Mongo 
+      p
+
+

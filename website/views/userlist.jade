@@ -1,0 +1,103 @@
+doctype html
+html(lang="en" ng-app="")
+  head
+    title  Welcome to Website
+    script(type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js')
+    script(type='text/javascript' src='javascripts/angular.min.js')
+    meta(name='viewport', content='height=device-height,width=device-width')
+    //
+       Bootstrap CSS
+    link(href='bootstrap/css/bootstrap.css', rel='stylesheet', media='screen')
+    script(type='text/javascript', src='bootstrap/js/jquery.js')
+    script(type='text/javascript', src='bootstrap/js/bootstrap.min.js')
+  body
+    //
+       Navigation Bar
+    .bodykinda
+      .navbar.navbar-default
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')
+            |  A demo of user website
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/') Home
+            li
+              a(href='charts') Chart
+            li.active
+              a(href='userlist') Admin
+      //
+         Navigation Bar
+       script(type='text/javascript' src="http://code.highcharts.com/highcharts.js")
+       script(type='text/javascript' src="http://code.highcharts.com/modules/exporting.js")
+       div(class="row")
+       div(class="col-sm-9 col-sm-push-5",id='container' )
+       |<script type='text/javascript'> var foo = [];
+    
+       each datum, i in charts
+         | var jan = new Date('2014-01-01');foo.push( Highcharts.dateFormat('%a %d %b',new Date(jan.setDate(jan.getDate()+
+         !=datum._id +"))));"		 
+       | bar = [
+       each datum, i in charts
+         !=datum.counts +","
+        |]</script>
+    script.
+     $(function () {
+                 $('#container').highcharts({
+                     title: {
+                         text: 'Users',
+                         x: -20 //center
+                     },
+                     subtitle: {
+                         text: 'userstest.users',
+                         x: -20
+                     },
+                     xAxis: {
+                         categories:  foo
+
+                },
+                     yAxis: {
+                         title: {
+                             text: '# of users'
+                    },
+                         plotLines: [{
+                             value: 0,
+                             width: 1,
+                             color: '#808080'
+                         }]
+                     },
+                     tooltip: {
+                     valueSuffix: ''
+                       },
+                       legend: {
+                           layout: 'vertical',
+                           align: 'right',
+                           verticalAlign: 'middle',
+                           borderWidth: 0
+                       },
+                       chart: {
+                            width : 800,
+                            height: 400
+                       },                       
+
+
+                       series: [      {
+                           name: 'http://104.131.232.17/',
+                           data:  bar
+                       }]
+                   })      ;
+               });
+    block content
+      |<div class="col-sm-3 col-sm-pull-9" data-ng-init="Users=[
+      for user in userlist
+         !="{'username':'"+user.username+"','_id':'"+user._id+"','isEnabled':'"+user.isEnabled+"'},"
+      |]">
+      h1.
+          User List
+      ul
+         li(data-ng-repeat="user in Users"){{user.username}}<a ng-if="user.isEnabled =='false'" class="btn btn-mini" href='/update?userid={{user._id}}&status=true'>Enable</a><a ng-if="user.isEnabled =='true'" class="btn btn-mini" href='/update?userid={{user._id}}&status=false'>Disable</a>
+      |</div>
