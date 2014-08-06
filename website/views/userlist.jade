@@ -99,5 +99,7 @@ html(lang="en" ng-app="")
       h1.
           User List
       ul
-         li(data-ng-repeat="user in Users"  data-ng-class="{strike:!{{user.isEnabled}} }"){{user.username}}<a ng-if="user.isEnabled =='false'" class="btn btn-mini" href='/update?userid={{user._id}}&status=true'>Enable</a><a ng-if="user.isEnabled =='true'" class="btn btn-mini" href='/update?userid={{user._id}}&status=false'>Disable</a>
+        li(data-ng-repeat="user in Users"  data-ng-class="{strike:!{{user.isEnabled}} }")<a ng-if="user.isEnabled =='false'" class="btn btn-default btn-success btn-xs" href='/update?userid={{user._id}}&status=true'>Enable</a><a ng-if="user.isEnabled =='true'" class="btn btn-default btn-danger btn-xs" href='/update?userid={{user._id}}&status=false'>Disable</a>           {{user.username}}
+
+
       |</div>
